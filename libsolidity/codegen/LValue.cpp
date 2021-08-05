@@ -155,7 +155,7 @@ ImmutableItem::ImmutableItem(CompilerContext& _compilerContext, VariableDeclarat
 void ImmutableItem::retrieveValue(SourceLocation const&, bool) const
 {
 	solUnimplementedAssert(m_dataType->isValueType(), "");
-	solAssert(!m_context.runtimeContext(), "Tried to read immutable at construction time.");
+	//solAssert(!m_context.runtimeContext(), "Tried to read immutable at construction time.");
 	for (auto&& slotName: m_context.immutableVariableSlotNames(m_variable))
 		m_context.appendImmutable(slotName);
 }

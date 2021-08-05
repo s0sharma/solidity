@@ -11,7 +11,7 @@ contract C is B {
         B.readX;
     }
 
-    function readX() internal override returns(uint) {
+    function readX() internal pure override returns(uint) {
         return 3;
     }
 }
