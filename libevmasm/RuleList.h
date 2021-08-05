@@ -248,8 +248,8 @@ std::vector<SimplificationRule<Pattern>> simplificationRuleListPart4(
 
 template <class Pattern>
 std::vector<SimplificationRule<Pattern>> simplificationRuleListPart4_5(
-	Pattern,
-	Pattern,
+	Pattern A,
+	Pattern B,
 	Pattern,
 	Pattern X,
 	Pattern Y
@@ -266,6 +266,10 @@ std::vector<SimplificationRule<Pattern>> simplificationRuleListPart4_5(
 		{Builtins::OR(Y, Builtins::OR(X, Y)), [=]{ return Builtins::OR(X, Y); }},
 		{Builtins::OR(Builtins::OR(Y, X), Y), [=]{ return Builtins::OR(Y, X); }},
 		{Builtins::OR(Y, Builtins::OR(Y, X)), [=]{ return Builtins::OR(Y, X); }},
+		{Builtins::SIGNEXTEND(X, Builtins::SIGNEXTEND(X, Y)), [=]() { return Builtins::SIGNEXTEND(X, Y); }},
+		{Builtins::SIGNEXTEND(A, Builtins::SIGNEXTEND(B, X)), [=]() {
+			return Builtins::SIGNEXTEND(A.d() < B.d() ? A.d() : B.d(), X);
+		}},
 	};
 }
 
